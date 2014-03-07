@@ -1,0 +1,47 @@
+body {
+  background: black;
+  font-family: 'Marvel', sans-serif;
+  font-size: 18px;
+  color: green;
+  margin: auto 0px;
+}
+
+a { text-decoration: none; color: green; border-bottom: solid #aa0000 2px }
+a:link {text-decoration: none; color: green}
+a:visited {text-decoration: none; color: green}
+a:active {text-decoration: none; color: #aa0000}
+a:hover {text-decoration: none; color: #aa0000}
+
+#wrapper {
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+  display: block;
+  padding: 20px;
+  width: 90%;
+}
+
+h1 { color: green; font-family: "Geostar Fill", cursive; font-size: 36px;}
+
+a#sinewave {
+  font-family: "Geostar Fill", cursive;
+  font-size: 26px; background: #105510; color: #00ff00; padding: 10px;
+}
+div.sinebox { width: 600px; padding: 20px; }
+div.logbox { width: 400px; background: black; color: #00ff00; padding: 5px; }
+
+p { padding: 10px; }
+.ui-button { font-family: "Marvel", cursive; font-size: 10px; padding: 0px; }
+
+#fftbox, #wavebox {
+  position: absolute;
+  width: 500;
+  height: 100;
+}
+
+#canvasbox {
+  position: relative;
+  width: 500px;
+  height: 100px;
+}

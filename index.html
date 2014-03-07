@@ -6,7 +6,25 @@
 </head>
 
 <body>
-  <input id="hex" type="text" placeholder="E.g: 0x01" />
+  <p>Please refresh the page between test iterations.  Also make sure that the browser is not bogged down</p>
+  <p>
+    <label for="testIterations">Number of Test Cycles</label>
+    <input id="testIterations" type="text" placeholder="E.g: 10" value="1">
+  </p>
+  <p>
+    <label for="speed">Time Between checking each Tone. 75-100 are safe value</labeL>
+    <input id="speed" type="text" placeholder="E.g: 100" value="75">
+  </p>
+  <button onclick="runATest();";>Run</button>
 </body>
-  <script src="js/app.js"></script>
+  <script src="js/micIO/index.js"></script>
+  <script src="js/micIO/tests.js"></script>
+  <script>
+    function runATest() {
+      var speed = parseInt($('#speed').val(),10);
+      var iterations = parseInt($('#testIterations').val(),10);
+      this.test = new MicIOTests(speed,iterations);
+    }
+  </script>
+
 </html>
