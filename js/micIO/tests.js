@@ -23,12 +23,15 @@ function MicIOTests (intervalSpeed, iterations) {
     "seed.3.75.wav",  //0xF 
     "seed.4.00.wav",  //0x10
     "seed.4.25.wav",  //0x11
-    "seed.4.50.wav"  //0x12
-   // "seed.4.75.wav"   //0x13 - NOT STABLE!
+    "seed.4.50.wav",  //0x12
+    "seed.4.75.wav"   //0x13 - NOT STABLE!
   ];
   var that = this;
   this.loadTestFreqs(function then() {
-    that.runTests();
+    //Timeout needed for w/e reason.  SOmething be lagging
+    setTimeout(function() {
+      that.runTests();
+    }, 150);
   });
 }
 /*

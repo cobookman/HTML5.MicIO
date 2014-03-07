@@ -6,8 +6,8 @@ function MicIO () {
   this.sourceNode = null;
   this.testSounds = null;
   this.analyser = null;
-  this.fftSize = 2048;
-  this.smoothingTimeConstant = 0.75;
+  this.fftSize = 1024;
+  //this.smoothingTimeConstant = 0.75;
 }
 MicIO.prototype.stopPlayback = function() {
   var now = this.audioContext.currentTime;
@@ -36,7 +36,7 @@ MicIO.prototype.startPlayback = function(audioBuffer) {
 };
 MicIO.prototype.fft = function() {
   this.fftData = new Uint8Array(this.analyser.frequencyBinCount);
-  this.analyser.smoothingTimeConstant = this.smoothingTimeConstant;
+  //this.analyser.smoothingTimeConstant = this.smoothingTimeConstant;
   this.analyser.getByteFrequencyData(this.fftData);
   return this.fftData;
 };
@@ -67,7 +67,7 @@ MicIO.prototype.strongestFrequency = function() {
 */
 MicIO.prototype.freq2Int = function(frequency) {
   var integerValue = 0;
-  for(var freqThreshold = 22; freqThreshold < 1024; freqThreshold+=15) {
+  for(var freqThreshold = 15; freqThreshold < 1024; freqThreshold+=7) {
     if(frequency < freqThreshold) {
       return integerValue;
     }

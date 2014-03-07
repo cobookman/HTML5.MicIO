@@ -20,10 +20,13 @@
   <script src="js/micIO/index.js"></script>
   <script src="js/micIO/tests.js"></script>
   <script>
+    var testResults;
     function runATest() {
       var speed = parseInt($('#speed').val(),10);
       var iterations = parseInt($('#testIterations').val(),10);
-      this.test = new MicIOTests(speed,iterations);
+      var test =  new MicIOTests(speed,iterations);
+      testResults = test.testResults;
+      test = null;
     }
   </script>
 
