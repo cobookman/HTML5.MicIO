@@ -7,6 +7,7 @@ function MicIO () {
   this.testSounds = null;
   this.analyser = null;
   this.fftSize = 1024;
+  this.freqIncrement = 312; //Hz - A bit of TESTING REQUIRED TO OBTAIN VALUE!!!
   //this.smoothingTimeConstant = 0.75;
 }
 MicIO.prototype.stopPlayback = function() {
@@ -57,21 +58,25 @@ MicIO.prototype.strongestFrequency = function() {
 
   return strongestFreq;
 };
+MicIO.prototype.uint8ToFreq = function(num8) {
+  return num8 * this.audioContext.sampleRate/this.fftSize;
+};
 /*
-  freq2Int turns a frequency value between:
-     [0,this.analyser.frequencyBinCount),
-  to the corresponding integer value:
-     [0x0, 0x12]
-  each frequency is ~15 appart and the starting 
-  frequency is 15. 2nd is 29. 3rd is 44...etc
+  uint8ToInt turns a uint8 val from fft to its
+  corresponding integer value.  
+  300Hz = 0, and for every +300Hz, the integer
+  value represented is +1. E.g:  1.5Khz = 4
+  ----
+    Testing REQUIRED for each uChip.
+    MBED should inc by 300Hz, actuality its 312Hz
+  -----
 */
-MicIO.prototype.freq2Int = function(frequency) {
-  var integerValue = 0;
-  for(var freqThreshold = 15; freqThreshold < 1024; freqThreshold+=7) {
-    if(frequency < freqThreshold) {
-      return integerValue;
-    }
-    ++integerValue;
+MicIO.prototype.uint8ToInt = function(num8) {
+  var output = Math.round(this.uint8ToFreq(num8)/this.freqIncrement);
+  //Move to range of 0->17...aka 1 Byte
+  if(output >0) {
+    --output;
   }
+  return output;
 };
 

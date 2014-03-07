@@ -85,7 +85,7 @@ MicIOTests.prototype.runTests = function() {
 };
 MicIOTests.prototype.checkTestResults = function() {
   for(var i = 0, l = this.testResults.length; i < l; ++i) {
-    var intVal = this.micIO.freq2Int(this.testResults[i]);
+    var intVal = this.micIO.uint8ToInt(this.testResults[i]);
     if(i !== intVal) {
       alert("Test failed\nShould have seen: " + i + " but saw: " + intVal + ", had freq: " + this.testResults[i]);
     }
