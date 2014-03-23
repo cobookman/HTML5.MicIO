@@ -1,33 +1,32 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>MIC I/O web modem</title>
+  <title>HTML5 MIC I/O</title>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <meta name="author" content="Colin Bookman">
+  <meta name="description" content="Testing page for the HTML5 Mic I/O Bus">
 </head>
 
 <body>
-  <p>Please refresh the page between test iterations.  Also make sure that the browser is not bogged down</p>
-  <p>
-    <label for="testIterations">Number of Test Cycles</label>
-    <input id="testIterations" type="text" placeholder="E.g: 10" value="1">
-  </p>
-  <p>
-    <label for="speed">Time Between checking each Tone. 75-100 are safe value</labeL>
-    <input id="speed" type="text" placeholder="E.g: 100" value="75">
-  </p>
-  <button onclick="runATest();";>Run</button>
+  <p><b>Important:</b> Please refresh the page between test iterations.  Also make sure that the browser is not bogged down</p>
+  <p>Instructions on how to set this up can be found <a href="http://www.colinbookman.com/micIO">here</a></p>
+  <p>Open your javascript console to see the data</p>
 </body>
+  <script src="js/micIO/clock.js"></script>
   <script src="js/micIO/index.js"></script>
-  <script src="js/micIO/tests.js"></script>
   <script>
-    var testResults;
-    function runATest() {
-      var speed = parseInt($('#speed').val(),10);
-      var iterations = parseInt($('#testIterations').val(),10);
-      var test =  new MicIOTests(speed,iterations);
-      testResults = test.testResults;
-      test = null;
-    }
+   var micIO = new MicIO(function onEndOfTransmission(data) {
+	alert("Got some data: " + JSON.stringify(data));
+   };
+   //Old test code which doesn't work anymore, due to frequency changing slightly (no idea why)..yay hardware
+    // var testResults;
+    // function runATest() {
+    //   var speed = parseInt($('#speed').val(),10);
+    //   var iterations = parseInt($('#testIterations').val(),10);
+    //   var test =  new MicIOTests(speed,iterations);
+    //   testResults = test.testResults;
+    //   test = null;
+    // }
   </script>
 
 </html>
