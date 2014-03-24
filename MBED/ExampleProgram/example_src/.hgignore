@@ -1,0 +1,19 @@
+syntax: regexp
+\.hgignore$
+\.git$
+\.svn$
+\.orig$
+\.msub$
+\.meta$
+\.ctags
+\.uvproj$
+\.uvopt$
+\.project$
+\.cproject$
+\.launch$
+\.project$
+\.cproject$
+\.launch$
+Makefile$
+\.ewp$
+\.eww$
